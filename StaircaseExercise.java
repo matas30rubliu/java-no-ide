@@ -31,9 +31,16 @@ public class StaircaseExercise {
         return intSizesArray;
     }
 
-    private static int calculateScenarioCount(int steps, int[] sizesArray) {
-        int smallStepSize = 1;
-        int bigStepSize = 2;
-        return steps + 1;
+    private static int calculateScenarioCount(int steps, int[] ascendingSizes) {
+        /* 
+         * (example values: steps 9, step sizes: 2, 4, 7)
+         * 0) Give the biggest step size
+         * 1) Take the given step size and begin the operation
+         * 2) Check how many steps you can make: 
+         *   2.1) if you can go to the top, increase the counter and continue the operation by giving next lower step size to 1)
+         *   2.2) if step size is less than the staircase, take the remaining staircase and start new operation 1) with next lower step
+         * 3) 
+         */
+        return 0;
     }
 }
