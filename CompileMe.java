@@ -9,10 +9,10 @@ package training.basics;
  * @since 2020-07-15
  */
 public class CompileMe {
-	public static void main(String[] args) {
-		System.out.println("args received:");
-		for (String arg : args) {
-			System.out.println(arg);
-		}
-	}
+    public static void main(String[] args) {
+        System.out.println("args received:");
+        for (String arg : args) {
+            System.out.println(arg);
+        }
+    }
 }
