@@ -7,6 +7,7 @@ import java.util.Collections;
 
 /**
  * @see <a href="https://youtu.be/5o-kdjv7FD0">Explanation</a>
+ * Still I used my own method
  */
 public class StaircaseExercise {
     public static void main(String[] args) {
@@ -27,7 +28,34 @@ public class StaircaseExercise {
     }
 
     private static int calculateScenarioCount2(int steps, int[] ascendingSizes) {
-        return 0;
+        /*
+         * For each step size add available sizes, which spawns candidates for completing the staircase.
+         * Example: to reach 6 by using 2 & 3. 
+         * First iteration: 22 (=4), 23 (=5)
+         * Second iteration: 223 (=7), 222 (=6), 232 (=7), 233 (=8)
+         * Third iteration will not be started, because limit was reached for all candidates: 32 33+; 322- 323- 332- 333- 
+         * The same iterations should be performed with other step sizes, in this example with step 3.
+         * Increase counter for valid candidates when the limit was reached.
+         */
+        int counter = 0;
+        for (int stepSize : ascendingSizes) {
+            counter += findValidCombinations(stepSize, ascendingSizes, steps);          
+        }
+        return counter;
+    }
+
+    private static int findValidCombinations(int sum, int[] values, int limit) {
+        if (sum == limit) {
+            return 1;
+        }
+        if (sum > limit) {
+            return 0;
+        }
+        int counter = 0;
+        for (int value : values) {
+            counter += findValidCombinations(sum + value, values, limit);
+        }
+        return counter;
     }
 
     private static int[] parseStepSizes(Scanner scanner) {
@@ -36,6 +64,7 @@ public class StaircaseExercise {
         String[] strSizesArray = rawSizes.split(" ");
         int[] intSizesArray = Stream.of(strSizesArray)
             .mapToInt(size -> Integer.parseInt(size))
+            .distinct()
             .toArray();
         Arrays.sort(intSizesArray);
         return intSizesArray;
