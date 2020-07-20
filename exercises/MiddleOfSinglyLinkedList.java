@@ -14,10 +14,26 @@ public class MiddleOfSinglyLinkedList {
         int[] array = CliParser.parseIntArray();
         System.out.println(Arrays.toString(array));
         SinglyLinkedList list = new SinglyLinkedList(array);
-        System.out.println("First = " + list.getFirst());
-        System.out.println("Next = " + list.getNext());
-        System.out.println("Next = " + list.getNext());
-        System.out.println("First = " + list.getFirst());
-        System.out.println("Next = " + list.getNext());
+        Integer middleElement = getMiddle(list);
+        System.out.println("Middle element = " + middleElement);
+    }
+    
+    private static Integer getMiddle(SinglyLinkedList list) {
+        Integer first = list.getFirst();
+        if (first == null) {
+            return null;
+        }
+        Integer next = list.getNext();
+        int listLength = 1;
+        while (next != null) {
+            listLength++;
+            next = list.getNext();
+        }
+        int middleIndex = listLength / 2 + 1;
+        list.getFirst();
+        for (int i = 1; i < middleIndex - 1; i++) {
+            list.getNext();
+        }
+        return list.getNext();
     }
 }
